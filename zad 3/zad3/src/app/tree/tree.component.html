@@ -1,0 +1,7 @@
+<input type="checkbox" [value]="branch.value" (change)="onChangeParent()">
+<span (click)=toggle()>{{ branch.label }}</span><br>
+<ul [hidden]="hidden">
+  <li *ngFor="let item of branch.children">
+    <app-tree-item #child [label]="item.label" [value]="item.value" (change)="onChangeChild(child)">
+    </app-tree-item></li>
+</ul>

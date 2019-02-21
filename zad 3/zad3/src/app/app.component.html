@@ -1,0 +1,3 @@
+<input #search type="text" (keyup)="keyUp(search)"><br>
+<app-tree *ngFor="let branch of tree" [branch]="branch"></app-tree>
+<router-outlet></router-outlet>

@@ -1,6 +1,6 @@
 console.log("choinka.js");
-const treeDiv = document.getElementById('tree');
 
+const treeDiv = document.getElementById('tree');
 const inputs = document.getElementsByTagName('input');
 
 function createTree() {
@@ -14,7 +14,7 @@ function createTree() {
   for (let i = 1; i < lvls; i++) {
     const reminder = i % capacity; 
     if (reminder === 0) {
-      lvl += 2;
+      lvl += 4;
     }
     tree += '/' + ('&nbsp;'.repeat(i * 2 - lvl)) + '\\</br>';
   }
