@@ -1,3 +1,6 @@
 <input #search type="text" (keyup)="keyUp(search)"><br>
-<app-tree *ngFor="let branch of tree" [branch]="branch"></app-tree>
+<span>Selected: {{ selectedString }}</span><br>
+<div *ngFor="let branch of tree">
+  <app-tree [branch]="branch" (selectedEmitter)="selectedEmitter()"></app-tree>
+</div>
 <router-outlet></router-outlet>

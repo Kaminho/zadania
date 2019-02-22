@@ -14,11 +14,13 @@ export class TreeComponent {
   @Input() hidden: boolean;
   @Input() checked: boolean;
 
-  @Output() selectedString: string;
+  @Output() selected: string[];
+  @Output() selectedEmitter =  new EventEmitter();
 
   constructor() {
     this.branch = [];
     this.hidden = false;
+    this.checked = false;
    }
 
    toggle() {
@@ -26,16 +28,23 @@ export class TreeComponent {
    }
 
    onChangeParent() {
-    this.checked = !this.checked;
-    this.treeItem.forEach(element => {
+     this.checked = !this.checked;
+     this.treeItem.forEach(element => {
       element.checked = this.checked;
     });
 
-    this.selectedString = this.treeItem.toArray().map(item => item.label).join(', ');
+    this.selected = this.treeItem.toArray().filter(item => item.checked).map(item => item.label);
+
+    if (this.checked) { this.selected.unshift(this.branch['label']); }
+
+    this.selectedEmitter.emit();
    }
 
    onChangeChild(input: TreeItemComponent) {
     input.checked = !input.checked;
-    this.selectedString = this.treeItem.toArray().map(item => item.label).join(', ');
+    this.selected = this.treeItem.toArray().filter(item => item.checked).map(item => item.label);
+    if (this.checked) { this.selected.unshift(this.branch['label']); }
+
+    this.selectedEmitter.emit();
    }
 }
